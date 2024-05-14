@@ -1,1 +1,0 @@
-export * from "@access-control/services/person.service";

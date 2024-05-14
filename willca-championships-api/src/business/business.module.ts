@@ -7,9 +7,9 @@ import { UserService } from '@authentication/services/index';
 import { UserSchema } from '@authentication/schemas/index';
 import { JwtStrategy } from '@authentication/strategy/index';
 
-import { PersonController } from '@access-control/controllers/index';
-import { PersonSchema } from '@access-control/schemas/index';
-import { PersonService } from '@access-control/services/index';
+import { PersonController } from '@championship/controllers/index';
+import { PersonSchema } from '@championship/schemas/index';
+import { PersonService } from '@championship/services/index';
 
 import { HttpResponse, TimeResponse, CrudService } from '@commons/index';
 import { ConfigModule, ConfigService, ConfigKey } from '@config/index';

@@ -1,8 +1,8 @@
 import { Logger, Body, Controller, UseGuards, Delete, Get, HttpStatus, Param, Query, Post, Put, Res } from '@nestjs/common';
 
-import { PersonDto } from '@access-control/dtos/index';
-import { PersonService } from '@access-control/services/index';
-import { PersonPType } from '@access-control/ptypes/index';
+import { PersonDto } from '@championship/dtos/index';
+import { PersonService } from '@championship/services/index';
+import { PersonPType } from '@championship/ptypes/index';
 import { AccessTokenGuard } from '@authentication/guards/index';
 import { FindByEnum, HttpResponse, TimeResponse } from '@commons/index';
 

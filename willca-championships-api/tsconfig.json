@@ -5,8 +5,8 @@
       "@authentication/*": [
         "src/business/authentication/*"
       ],
-      "@access-control/*": [
-        "src/business/access-control/*"
+      "@championship/*": [
+        "src/business/championship/*"
       ],
       "@commons/*": [
         "src/commons/*"

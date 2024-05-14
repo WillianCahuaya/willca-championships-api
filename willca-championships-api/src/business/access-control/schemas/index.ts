@@ -1,1 +1,0 @@
-export * from "@app/business/access-control/schemas/person.schema";

@@ -1,1 +1,0 @@
-export * from "@access-control/controllers/person.controller";

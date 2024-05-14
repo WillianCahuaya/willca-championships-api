@@ -2,9 +2,9 @@ import { Logger, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from "mongoose";
 
-import { PersonDto } from '@access-control/dtos/index';
-import { PersonPType } from '@access-control/ptypes/index';
-import { Person, PersonDocument } from '@access-control/schemas/index';
+import { PersonDto } from '@championship/dtos/index';
+import { PersonPType } from '@championship/ptypes/index';
+import { Person, PersonDocument } from '@championship/schemas/index';
 import { FindByEnum, CrudService } from '@commons/index';
 
 @Injectable()

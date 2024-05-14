@@ -1,0 +1,1 @@
+export * from "@championship/ptypes/person.ptype";
