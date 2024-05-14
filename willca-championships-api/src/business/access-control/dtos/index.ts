@@ -1,0 +1,1 @@
+export * from "@access-control/dtos/person.dto";
