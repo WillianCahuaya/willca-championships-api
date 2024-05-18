@@ -7,19 +7,20 @@ import { UserService } from '@authentication/services/index';
 import { UserSchema } from '@authentication/schemas/index';
 import { JwtStrategy } from '@authentication/strategy/index';
 
-import { PersonController } from '@championship/controllers/index';
-import { PersonSchema } from '@championship/schemas/index';
-import { PersonService } from '@championship/services/index';
+import { PersonController, TeamController } from '@championship/controllers/index';
+import { PersonSchema, TeamSchema } from '@championship/schemas/index';
+import { PersonService, TeamService } from '@championship/services/index';
 
-import { HttpResponse, TimeResponse, CrudService } from '@commons/index';
+import { HttpResponse, TimeResponse, CrudService, TablesEnum } from '@commons/index';
 import { ConfigModule, ConfigService, ConfigKey } from '@config/index';
 
 
 @Module({
     imports: [
         MongooseModule.forFeature([
-            { name: 'User', schema: UserSchema },
-            { name: 'Person', schema: PersonSchema }
+            { name: TablesEnum.USER, schema: UserSchema },
+            { name: TablesEnum.PERSON, schema: PersonSchema },
+            { name: TablesEnum.TEAM, schema: TeamSchema },
         ]),
         PassportModule,
         JwtModule.registerAsync({
@@ -31,13 +32,15 @@ import { ConfigModule, ConfigService, ConfigKey } from '@config/index';
         }),
     ],
     controllers: [
-        PersonController
+        PersonController,
+        TeamController,
     ],
     providers: [
         HttpResponse,
         TimeResponse,
         UserService,
         PersonService,
+        TeamService,
         JwtStrategy,
         {
             useFactory: (logger: Logger, model: any) => { return new CrudService(logger, model); },

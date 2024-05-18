@@ -3,13 +3,14 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from "mongoose";
 
 import { User, UserDocument } from '@authentication/schemas/index';
+import { TablesEnum } from '@app/commons';
 
 @Injectable()
 export class UserService {
     private readonly logger = new Logger(UserService.name);
 
     constructor (
-        @InjectModel(User.name)
+        @InjectModel(TablesEnum.USER)
         private userModel: Model<UserDocument>
     ) { }
 

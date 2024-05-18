@@ -4,8 +4,8 @@ import { Model } from "mongoose";
 
 import { PersonDto } from '@championship/dtos/index';
 import { PersonPType } from '@championship/ptypes/index';
-import { Person, PersonDocument } from '@championship/schemas/index';
-import { FindByEnum, CrudService } from '@commons/index';
+import { PersonDocument } from '@championship/schemas/index';
+import { FindByEnum, CrudService, TablesEnum } from '@commons/index';
 
 @Injectable()
 export class PersonService {
@@ -13,7 +13,7 @@ export class PersonService {
     private readonly crudService: CrudService;
 
     constructor (
-        @InjectModel(Person.name)
+        @InjectModel(TablesEnum.PERSON)
         private personModel: Model<PersonDocument>
     ) {
         this.crudService = new CrudService(this.logger, this.personModel);

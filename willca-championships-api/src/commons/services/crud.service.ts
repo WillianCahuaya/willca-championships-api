@@ -12,7 +12,7 @@ export class CrudService {
         this.logger.log(`[create] create a new document`);
         const objectModel = await new this.documentModel(dto);
         objectModel.creationUser = 'admin';
-        this.logger.debug(`[create] document model to save [${JSON.stringify(objectModel)}]`);
+        this.logger.debug(`[create] document model to save: ${JSON.stringify({ objectModel })}`);
         const response = objectModel.save();
         this.logger.log(`[create] success`);
         return response;
@@ -22,7 +22,7 @@ export class CrudService {
         this.logger.log(`[update] update by id [${id}]`);
         const response = await this.documentModel.findByIdAndUpdate(id, partialType, { new: true });
         if (!response) {
-            throw new NotFoundException(`document by id [${id}] not found`);
+            throw new NotFoundException(`document by id not found: ${JSON.stringify({ id })}`);
         }
         this.logger.log(`[update] success`);
         return response;
@@ -31,14 +31,14 @@ export class CrudService {
     async getAll(): Promise<any[]> {
         this.logger.log(`[getAll] get all`);
         const response = await this.documentModel.find();
-        this.logger.log(`[getAll] success, length: ${response.length}`);
+        this.logger.log(`[getAll] success: ${JSON.stringify({ length: response.length })}`);
         return response;
     }
 
     async getAllPopulate(populate: string): Promise<any[]> {
         this.logger.log(`[getAll] get all populate`);
         const response = await this.documentModel.find().populate(populate);
-        this.logger.log(`[getAll] success, length: ${response.length}`);
+        this.logger.log(`[getAll] success: ${JSON.stringify({ length: response.length })}`);
         return response;
     }
 
@@ -46,7 +46,7 @@ export class CrudService {
         this.logger.log(`[get] get by id [${JSON.stringify(id)}]`);
         const response = await this.documentModel.findById(id).exec();
         if (!response) {
-            throw new NotFoundException(`Document id [${id}] not found`);
+            throw new NotFoundException(`Document by id not found: ${JSON.stringify({ id })}`);
         }
         this.logger.log(`[get] success`);
         return response;
@@ -56,7 +56,7 @@ export class CrudService {
         this.logger.log(`[delete] delete by id [${id}]`);
         const response = await this.documentModel.findByIdAndDelete(id);
         if (!response) {
-            throw new NotFoundException(`Document id [${id}] not found`);
+            throw new NotFoundException(`Document by id not found: ${JSON.stringify({ id })}`);
         }
         this.logger.log(`[delete] success`);
         return response;
@@ -66,7 +66,7 @@ export class CrudService {
         this.logger.log(`[getBy] find by field [${field}] with value [${value}]`);
         let response = await this.documentModel.findOne({ [field]: value }).exec();
         if (!response) {
-            throw new NotFoundException(`Document by field [${field}] with value [${value}] not found`);
+            throw new NotFoundException(`Document by field with value not found: ${JSON.stringify({ field, value })}`);
         }
         this.logger.log(`[delete] success`);
         return response;
@@ -76,7 +76,7 @@ export class CrudService {
         this.logger.log(`[verifyDoesNotExist] verify does not exist by field [${field}] with value [${value}]`);
         let response = await this.documentModel.exists({ [field]: value }).exec();
         if (response) {
-            throw new ConflictException(`Document by field [${field}] with value [${value}] already exist`);
+            throw new ConflictException(`Document by field with value already exist: ${JSON.stringify({ field, value })}`);
         }
         this.logger.log(`[verifyDoesNotExist] success`);
     }

@@ -1,3 +1,5 @@
+export * from "@commons/dtos/base.dto";
+
 export * from "@commons/enums/generals.enum";
 
 export * from "@commons/filters/http-exception.filter";
@@ -13,7 +15,8 @@ export * from "@commons/models/exception.model";
 export * from "@commons/responses/http.response";
 export * from "@commons/responses/time.response";
 
-export * from "@commons/services/crud.service";
+export * from "@commons/schemas/base.schema";
 
+export * from "@commons/services/crud.service";
 
 export * from "@commons/utils/mask-data.service";

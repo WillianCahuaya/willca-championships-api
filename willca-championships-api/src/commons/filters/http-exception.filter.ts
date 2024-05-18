@@ -19,14 +19,21 @@ export class HttpExceptionFilter implements ExceptionFilter<HttpException> {
         let details = undefined;
 
         if (exception) {
-            if (exception['response']) {
-                statusCode = exception['response']['statusCode'];
-            }
             if (exception['message']) {
                 message = exception['message'];
             }
+            if (exception['response']) {
+                statusCode = exception['response']['statusCode'];
+            }
+            if (exception['response'] && exception['response']['message']) {
+                details = exception['response']['message'];
+            }
             if (exception['error']) {
-                details = exception['error'];
+                if (details) {
+                    details = `${details} | ${exception['error']}`;
+                } else {
+                    details = exception['error'];
+                }
             }
         }
         const errorModel = new ErrorModel();
